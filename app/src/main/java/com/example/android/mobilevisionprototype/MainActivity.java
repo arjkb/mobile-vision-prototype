@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())  {
             case R.id.button:
                 Toast.makeText(this, "Process button clicked!", Toast.LENGTH_SHORT).show();
+                detectText();
                 break;
         }
     }
@@ -62,6 +65,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                      R.drawable.pic01_party);
 
         Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+
+        SparseArray<TextBlock> textBlockSparseArray = textRecognizer.detect(frame);
+
+        for (int i = 0; i < textBlockSparseArray.size(); i++) {
+            TextBlock textBlock = textBlockSparseArray.valueAt(i);
+
+            Log.v(TAG, " Text! " + textBlock.getValue());
+        }
     }
 }
 
