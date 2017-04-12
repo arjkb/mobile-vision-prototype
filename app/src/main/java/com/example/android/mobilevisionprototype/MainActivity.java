@@ -2,6 +2,8 @@ package com.example.android.mobilevisionprototype;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.w(TAG, "Low storage!");
             }
         }
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                                                     R.drawable.pic01_party);
+
+        Frame frame = new Frame.Builder().setBitmap(bitmap).build();
     }
 }
 
