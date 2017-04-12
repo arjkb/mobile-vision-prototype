@@ -1,12 +1,12 @@
 # Mobile Vision Prototype
 
-This is a simple Android application to figure out how well the [Moble Vision API by Google](https://developers.google.com/vision/) works.
+This is a simple Android application to figure out the effectiveness of the [Moble Vision API by Google.](https://developers.google.com/vision/)
 
-This app is self-contained. The images it uses are within the app in the `res/drawable` directory.
+This app is self-contained. The images it uses are in the `res/drawable` directory. As of now, there are two images, and the app is hardcoded to use one of them.
 
 To run (works with Android Lollipop and higher only),
 
-1. Clone from this repository.
+1. Clone this repository from the terminal.
 ```
 git clone https://github.com/arjunkrishnababu96/mobile-vision-prototype.git
 ```
