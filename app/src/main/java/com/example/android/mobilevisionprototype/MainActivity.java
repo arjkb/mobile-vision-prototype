@@ -69,12 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SparseArray<TextBlock> textBlockSparseArray = textRecognizer.detect(frame);
 
         String detectedText = "";
-
         for (int i = 0; i < textBlockSparseArray.size(); i++) {
             TextBlock textBlock = textBlockSparseArray.valueAt(i);
-
             detectedText += textBlock.getValue();
-
             Log.v(TAG, " Text! " + textBlock.getValue());
         }
 
