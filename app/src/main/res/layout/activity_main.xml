@@ -6,24 +6,26 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:gravity="center_horizontal"
-    android:weightSum="1">
+    >
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.24" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:src="@drawable/se_pic01_party"/>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Process Image"
         />
 
