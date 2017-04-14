@@ -5,7 +5,14 @@
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:weightSum="1">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.24" />
 
     <ImageView
         android:id="@+id/image"
