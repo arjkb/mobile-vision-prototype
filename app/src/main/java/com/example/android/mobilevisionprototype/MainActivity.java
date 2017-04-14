@@ -18,11 +18,13 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView mImageView;
     Button mProcessButton;
+    ArrayList<String> drawablePicList;
 
     final String TAG = "MV";
 
@@ -36,19 +38,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mProcessButton.setOnClickListener(this);
 
-        getPics();
+        drawablePicList = getPics();
+        for(String picName: drawablePicList)    {
+            Log.v(TAG, "Picture Resource Name: " + picName);
+        }
     }
 
-    private void getPics() {
+    private ArrayList<String> getPics() {
         Field[] drawables = R.drawable.class.getFields();
+        ArrayList<String> drawableResources = new ArrayList<>();
 
-        for (Field f: drawables)    {
+        for (Field drawableResourceField: drawables)    {
             try {
-                Log.v(TAG, "getPics(): R.drawable." + f.getName());
+                String drawableResourceName = drawableResourceField.getName();
+
+                if (drawableResourceName.startsWith("se_pic"))   {
+                    drawableResources.add("R.drawable." + drawableResourceName);
+                }
             } catch (Exception E)   {
                 Log.v(TAG, "getPics() EXCEPTION: " + E);
             }
         }
+        return drawableResources;
     }
 
 
