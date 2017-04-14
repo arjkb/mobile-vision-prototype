@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<String> drawablePicList;
     Spinner spinner;
 
+    String currentDrawableResource = null;
+
     final String TAG = "MV";
 
     @Override
@@ -88,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        currentDrawableResource = drawablePicList.get((int) id);
         Log.v(TAG, " onItemSelected: ID: " + id);
+        Log.v(TAG, " onItemSelected: currentDrawableResource: " + currentDrawableResource);
     }
 
     @Override
