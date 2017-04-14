@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        currentDrawableResource = drawablePicList.get(1);
+        mImageView.setImageResource(getResources().getIdentifier(currentDrawableResource,
+                                                        "id", getPackageName()));
     }
 
     private ArrayList<String> getPics() {
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String drawableResourceName = drawableResourceField.getName();
 
                 if (drawableResourceName.startsWith("se_pic"))   {
-                    drawableResources.add("R.drawable." + drawableResourceName);
+                    drawableResources.add(drawableResourceName);
                 }
             } catch (Exception E)   {
                 Log.v(TAG, "getPics() EXCEPTION: " + E);
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentDrawableResource = drawablePicList.get((int) id);
         Log.v(TAG, " onItemSelected: ID: " + id);
         Log.v(TAG, " onItemSelected: currentDrawableResource: " + currentDrawableResource);
+
+        mImageView.setImageResource(this.getResources().getIdentifier(currentDrawableResource,
+                "drawable", this.getPackageName()));
     }
 
     @Override
