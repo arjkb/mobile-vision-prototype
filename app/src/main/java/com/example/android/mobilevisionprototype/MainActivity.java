@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,7 +23,8 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+                                    AdapterView.OnItemSelectedListener {
 
     ImageView mImageView;
     Button mProcessButton;
@@ -54,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner.setAdapter(adapter);
     }
 
-
-
     private ArrayList<String> getPics() {
         Field[] drawables = R.drawable.class.getFields();
         ArrayList<String> drawableResources = new ArrayList<>();
@@ -83,6 +83,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 detectText();
                 break;
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public void detectText() {
