@@ -17,6 +17,9 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView mImageView;
@@ -33,6 +36,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mProcessButton = (Button) findViewById(R.id.button);
 
         mProcessButton.setOnClickListener(this);
+
+        getPics();
+    }
+
+    private void getPics() {
+        Field[] drawables = R.drawable.class.getFields();
+
+        for (Field f: drawables)    {
+            try {
+                Log.v(TAG, "getPics(): R.drawable." + f.getName());
+            } catch (Exception E)   {
+                Log.v(TAG, "getPics() EXCEPTION: " + E);
+            }
+        }
     }
 
 
