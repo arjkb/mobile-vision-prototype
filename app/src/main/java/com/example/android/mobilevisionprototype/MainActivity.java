@@ -18,7 +18,6 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                                                     R.drawable.pic01_party);
+                                                     R.drawable.se_pic01_party);
 
         Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
