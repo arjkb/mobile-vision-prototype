@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView mImageView;
     Button mProcessButton;
     ArrayList<String> drawablePicList;
+    Spinner spinner;
 
     final String TAG = "MV";
 
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mImageView = (ImageView) findViewById(R.id.image);
         mProcessButton = (Button) findViewById(R.id.button);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
         mProcessButton.setOnClickListener(this);
 
@@ -42,7 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(String picName: drawablePicList)    {
             Log.v(TAG, "Picture Resource Name: " + picName);
         }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                                        android.R.layout.simple_spinner_item,
+                                        drawablePicList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
+
+
 
     private ArrayList<String> getPics() {
         Field[] drawables = R.drawable.class.getFields();
