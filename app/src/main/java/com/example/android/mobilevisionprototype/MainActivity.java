@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner;
 
     String currentDrawableResource = null;
+    int currentDrawableResourceID = 0;
 
     final String TAG = "MV";
 
@@ -58,8 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         currentDrawableResource = drawablePicList.get(1);
-        mImageView.setImageResource(getResources().getIdentifier(currentDrawableResource,
-                                                        "id", getPackageName()));
+        currentDrawableResourceID = getResources()
+                                    .getIdentifier(currentDrawableResource, "id", getPackageName());
+        mImageView.setImageResource(currentDrawableResourceID);
     }
 
     private ArrayList<String> getPics() {
@@ -94,11 +96,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         currentDrawableResource = drawablePicList.get((int) id);
+        currentDrawableResourceID = getResources()
+                .getIdentifier(currentDrawableResource, "drawable", getPackageName());
+
         Log.v(TAG, " onItemSelected: ID: " + id);
+        Log.v(TAG, " onItemSelected: Pos: " + position);
         Log.v(TAG, " onItemSelected: currentDrawableResource: " + currentDrawableResource);
 
-        mImageView.setImageResource(this.getResources().getIdentifier(currentDrawableResource,
-                "drawable", this.getPackageName()));
+        mImageView.setImageResource(currentDrawableResourceID);
     }
 
     @Override
@@ -122,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                                                     R.drawable.se_pic01_party);
+                                                            currentDrawableResourceID);
 
         Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
