@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -132,8 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                                                            currentDrawableResourceID);
+//        BitmapDrawable drawable = (BitmapDrawable) mImageView.getDrawable();
+//        Bitmap bitmap = drawable.getBitmap();
+        Bitmap bitmap = ((GlideBitmapDrawable)mImageView.getDrawable().getCurrent()).getBitmap();
+
+//        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+//                                                            currentDrawableResourceID);
 
         Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
