@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -103,7 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.v(TAG, " onItemSelected: Pos: " + position);
         Log.v(TAG, " onItemSelected: currentDrawableResource: " + currentDrawableResource);
 
-        mImageView.setImageResource(currentDrawableResourceID);
+//        mImageView.setImageResource(currentDrawableResourceID);
+        Glide.with(this)
+                .load(currentDrawableResourceID)
+                .centerCrop()
+                .into(mImageView);
+
     }
 
     @Override
