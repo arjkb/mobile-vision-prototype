@@ -3,8 +3,6 @@ package com.example.android.mobilevisionprototype;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,7 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentDrawableResource = drawablePicList.get(1);
         currentDrawableResourceID = getResources()
                                     .getIdentifier(currentDrawableResource, "id", getPackageName());
-        mImageView.setImageResource(currentDrawableResourceID);
+        Glide.with(this)
+                .load(currentDrawableResourceID)
+                .centerCrop()
+                .into(mImageView);
     }
 
     private ArrayList<String> getPics() {
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.v(TAG, " onItemSelected: Pos: " + position);
         Log.v(TAG, " onItemSelected: currentDrawableResource: " + currentDrawableResource);
 
-//        mImageView.setImageResource(currentDrawableResourceID);
         Glide.with(this)
                 .load(currentDrawableResourceID)
                 .centerCrop()
@@ -134,13 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-//        BitmapDrawable drawable = (BitmapDrawable) mImageView.getDrawable();
-//        Bitmap bitmap = drawable.getBitmap();
         Bitmap bitmap = ((GlideBitmapDrawable)mImageView.getDrawable().getCurrent()).getBitmap();
-
-//        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-//                                                            currentDrawableResourceID);
-
         Frame frame = new Frame.Builder().setBitmap(bitmap).build();
 
         SparseArray<TextBlock> textBlockSparseArray = textRecognizer.detect(frame);
