@@ -16,6 +16,9 @@
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
 
+        <meta-data android:name="com.example.android.mobilevisionprototype.GlideConfiguration"
+            android:value="GlideModule" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
