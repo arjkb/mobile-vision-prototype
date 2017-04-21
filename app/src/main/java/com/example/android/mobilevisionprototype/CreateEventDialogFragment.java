@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class CreateEventDialogFragment extends DialogFragment {
 
     final String TAG = "CEDF";
+    String message = null;
 
     public interface CreateEventDialogListener  {
         public void onDialogPositiveClick(DialogFragment dialog);
@@ -24,6 +25,11 @@ public class CreateEventDialogFragment extends DialogFragment {
     }
 
     CreateEventDialogListener mListener;
+
+
+    public CreateEventDialogFragment(String message) {
+        this.message = message;
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,16 +47,16 @@ public class CreateEventDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("Blah!")
-                .setTitle("Blah Title")
-                .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+        builder.setMessage(message)
+                .setTitle(R.string.create_event_dialog_title)
+                .setPositiveButton(R.string.create_event_dialog_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(TAG, "Positive press!");
                         mListener.onDialogPositiveClick(CreateEventDialogFragment.this);
                     }
                 })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.create_event_dialog_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(TAG, "Negative press!");
