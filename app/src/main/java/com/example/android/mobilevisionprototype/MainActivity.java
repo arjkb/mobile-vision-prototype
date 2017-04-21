@@ -97,8 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button:
                 Toast.makeText(this, "Process button clicked!", Toast.LENGTH_SHORT).show();
 //                detectText();
-                showCreateEventDialog("Foo!");
-
+                showCreateEventDialog(detectText());
                 break;
         }
     }
