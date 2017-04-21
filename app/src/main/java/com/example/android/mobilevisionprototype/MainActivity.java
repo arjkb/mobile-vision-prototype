@@ -97,11 +97,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button:
                 Toast.makeText(this, "Process button clicked!", Toast.LENGTH_SHORT).show();
 //                detectText();
-                DialogFragment newFragment = new CreateEventDialogFragment();
-                newFragment.show(getSupportFragmentManager(), "CEDF");
+                showCreateEventDialog("Foo!");
 
                 break;
         }
+    }
+
+    void showCreateEventDialog(String message)  {
+        DialogFragment newFragment = new CreateEventDialogFragment(message);
+        newFragment.show(getSupportFragmentManager(), "CEDF");
     }
 
     @Override
