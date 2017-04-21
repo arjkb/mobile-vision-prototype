@@ -48,15 +48,15 @@ public class CreateEventDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setMessage(message)
-                .setTitle("Blah Title")
-                .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.create_event_dialog_title)
+                .setPositiveButton(R.string.create_event_dialog_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(TAG, "Positive press!");
                         mListener.onDialogPositiveClick(CreateEventDialogFragment.this);
                     }
                 })
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.create_event_dialog_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.v(TAG, "Negative press!");
