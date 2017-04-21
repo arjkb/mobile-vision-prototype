@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void detectText() {
+    public String detectText() {
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if(!textRecognizer.isOperational()) {
@@ -167,7 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.v(TAG, " Text! " + textBlock.getValue());
         }
 
-        Toast.makeText(this, detectedText, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, detectedText, Toast.LENGTH_LONG).show();
+        return detectedText;
     }
 }
 
