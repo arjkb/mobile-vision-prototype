@@ -46,16 +46,15 @@ public class CreateEventDialogFragment extends DialogFragment {
                 .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(getContext(), "Positive press!", Toast.LENGTH_SHORT);
                         Log.v(TAG, "Positive press!");
-                        
+                        mListener.onDialogPositiveClick(CreateEventDialogFragment.this);
                     }
                 })
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(getContext(), "Negative press!", Toast.LENGTH_SHORT);
                         Log.v(TAG, "Negative press!");
+                        mListener.onDialogNegativeClick(CreateEventDialogFragment.this);
                     }
                 });
 
