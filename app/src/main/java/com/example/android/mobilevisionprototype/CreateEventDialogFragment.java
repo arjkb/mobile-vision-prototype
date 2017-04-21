@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class CreateEventDialogFragment extends DialogFragment {
 
     final String TAG = "CEDF";
+    String message = null;
 
     public interface CreateEventDialogListener  {
         public void onDialogPositiveClick(DialogFragment dialog);
@@ -24,6 +25,11 @@ public class CreateEventDialogFragment extends DialogFragment {
     }
 
     CreateEventDialogListener mListener;
+
+
+    public CreateEventDialogFragment(String message) {
+        this.message = message;
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -41,7 +47,7 @@ public class CreateEventDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("Blah!")
+        builder.setMessage(message)
                 .setTitle("Blah Title")
                 .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     @Override
