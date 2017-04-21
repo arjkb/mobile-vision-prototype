@@ -28,7 +28,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-                                    AdapterView.OnItemSelectedListener {
+                                    AdapterView.OnItemSelectedListener,
+                                    CreateEventDialogFragment.CreateEventDialogListener{
 
     ImageView mImageView;
     Button mProcessButton;
@@ -101,6 +102,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
         }
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Log.v(TAG, "Positive click in MainActivity!");
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Log.v(TAG, "Negative click in MainActivity!");
     }
 
     @Override
