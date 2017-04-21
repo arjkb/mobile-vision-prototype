@@ -110,11 +110,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         Log.v(TAG, "Positive click in MainActivity!");
+        Toast.makeText(getApplicationContext(), "Create Event!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
         Log.v(TAG, "Negative click in MainActivity!");
+        Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
