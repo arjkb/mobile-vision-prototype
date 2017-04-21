@@ -1,5 +1,8 @@
 package com.example.android.mobilevisionprototype;
 
+import android.app.Activity;
+import android.support.v4.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -92,7 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())  {
             case R.id.button:
                 Toast.makeText(this, "Process button clicked!", Toast.LENGTH_SHORT).show();
-                detectText();
+//                detectText();
+                DialogFragment newFragment = new CreateEventDialogFragment();
+                newFragment.show(getSupportFragmentManager(), "CEDF");
+
                 break;
         }
     }
