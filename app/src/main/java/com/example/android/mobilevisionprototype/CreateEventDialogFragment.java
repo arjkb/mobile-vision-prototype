@@ -16,6 +16,12 @@ import android.widget.Toast;
 public class CreateEventDialogFragment extends DialogFragment {
 
     final String TAG = "CEDF";
+
+    public interface CreateEventDialogListener  {
+        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogNegativeClick(DialogFragment dialog);
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
