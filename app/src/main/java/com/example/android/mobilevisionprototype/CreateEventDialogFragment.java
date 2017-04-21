@@ -1,6 +1,7 @@
 package com.example.android.mobilevisionprototype;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
@@ -22,6 +23,20 @@ public class CreateEventDialogFragment extends DialogFragment {
         public void onDialogNegativeClick(DialogFragment dialog);
     }
 
+    CreateEventDialogListener mListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mListener = (CreateEventDialogListener) activity;
+        } catch (ClassCastException e)  {
+            throw new ClassCastException(activity.toString()
+                    + " must implement CreateEventDialogListener");
+        }
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -33,6 +48,7 @@ public class CreateEventDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
 //                        Toast.makeText(getContext(), "Positive press!", Toast.LENGTH_SHORT);
                         Log.v(TAG, "Positive press!");
+                        
                     }
                 })
                 .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
