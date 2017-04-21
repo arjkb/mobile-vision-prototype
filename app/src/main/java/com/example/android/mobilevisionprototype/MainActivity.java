@@ -1,5 +1,8 @@
 package com.example.android.mobilevisionprototype;
 
+import android.app.Activity;
+import android.support.v4.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -25,7 +28,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-                                    AdapterView.OnItemSelectedListener {
+                                    AdapterView.OnItemSelectedListener,
+                                    CreateEventDialogFragment.CreateEventDialogListener{
 
     ImageView mImageView;
     Button mProcessButton;
@@ -92,9 +96,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())  {
             case R.id.button:
                 Toast.makeText(this, "Process button clicked!", Toast.LENGTH_SHORT).show();
-                detectText();
+//                detectText();
+                showCreateEventDialog(detectText());
                 break;
         }
+    }
+
+    void showCreateEventDialog(String message)  {
+        DialogFragment newFragment = new CreateEventDialogFragment(message);
+        newFragment.show(getSupportFragmentManager(), "CEDF");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Log.v(TAG, "Positive click in MainActivity!");
+        Toast.makeText(getApplicationContext(), "Create Event!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Log.v(TAG, "Negative click in MainActivity!");
+        Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -119,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void detectText() {
+    public String detectText() {
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if(!textRecognizer.isOperational()) {
@@ -146,7 +168,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.v(TAG, " Text! " + textBlock.getValue());
         }
 
-        Toast.makeText(this, detectedText, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, detectedText, Toast.LENGTH_LONG).show();
+        return detectedText;
     }
 }
 
